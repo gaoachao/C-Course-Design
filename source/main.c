@@ -55,7 +55,7 @@ int main()
 		{
 		case 0: //登录
 		{
-			// state_consult_main(&func, &t, &flag);
+			//htinfo_main(&func, &u, &L);
 			login_main(&func, &u);
 			break;
 		}
@@ -172,6 +172,11 @@ int main()
 		case 22: //实时位置详细信息
 		{
 			detail_consult_main(&func, t, flag);
+			break;
+		}
+		case 23: //已订购酒店信息查询
+		{
+			htinfo_main(&func, &u, &L);
 			break;
 		}
 		default:

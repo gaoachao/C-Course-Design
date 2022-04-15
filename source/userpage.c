@@ -28,7 +28,6 @@ RETURN: 无
 void userpage_main(int *func, USER *u)
 {
 	int num = 0;
-	HOLD 
 	char health_code[2];
 	memset(health_code, '\0', sizeof(health_code));
 
@@ -232,6 +231,24 @@ void userpage_main(int *func, USER *u)
 		}
 
 		//酒店查询
+		if (MouseX > 520 && MouseX < 640 && MouseY > 160 && MouseY < 190)
+		{
+			if (mouse_press(520, 160, 640, 190) == 2)
+			{
+				MouseS = 1;
+				if (num == 0)
+				{
+					lightup_userpage(510, 172, 600, 184, 4);
+					num = 4;
+				}
+				continue;
+			}
+			else if (mouse_press(520, 160, 640, 190) == 1)
+			{
+				*func = 23;
+				return;
+			}
+		}
 
 		//跳转至我的卡包界面
 		if (MouseX > 520 && MouseX < 640 && MouseY > 190 && MouseY < 218)
