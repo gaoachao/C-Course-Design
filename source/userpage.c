@@ -40,6 +40,7 @@ void userpage_main(int *func, USER *u)
 	//	get_time(ttemp);
 	//获取基本信息
 	get_userinfo(u);
+	get_tkinfo(u);
 
 	//刚进入页面进行一次健康状态的判断
 	if (strcmp(u->health_code, "1") == 0)
@@ -83,8 +84,6 @@ void userpage_main(int *func, USER *u)
 	{
 		newmouse(&MouseX, &MouseY, &press);
 
-		//实时时间展示
-		//		display_time(65, 10, ttemp);
 		//选中绿码
 		if (MouseX > 140 && MouseX < 205 && MouseY > 155 && MouseY < 180)
 		{
@@ -107,7 +106,6 @@ void userpage_main(int *func, USER *u)
 				setcolor(DARKGRAY);
 				rectangle(280, 155, 305, 180);
 				rectangle(380, 155, 405, 180);
-				//	outtextxy(1,1,u->health_code);
 			}
 		}
 		//选中黄码
@@ -159,28 +157,28 @@ void userpage_main(int *func, USER *u)
 			}
 		}
 		//跳转至机票信息界面
-		if (MouseX > 270 && MouseX < 350 && MouseY > 10 && MouseY < 60)
+		if (MouseX > 270 && MouseX < 350 && MouseY > 25 && MouseY < 60)
 		{
-			if (mouse_press(270, 10, 350, 60) == 2)
+			if (mouse_press(270, 25, 350, 60) == 2)
 			{
 				MouseS = 1;
 				continue;
 			}
-			else if (mouse_press(270, 10, 350, 60) == 1)
+			else if (mouse_press(270, 25, 350, 60) == 1)
 			{
 				*func = 4;
 				return;
 			}
 		}
 		//跳转至疫情防控界面
-		if (MouseX > 450 && MouseX < 530 && MouseY > 10 && MouseY < 60)
+		if (MouseX > 450 && MouseX < 530 && MouseY > 25 && MouseY < 60)
 		{
-			if (mouse_press(450, 10, 530, 60) == 2)
+			if (mouse_press(450, 25, 530, 60) == 2)
 			{
 				MouseS = 1;
 				continue;
 			}
-			else if (mouse_press(450, 10, 530, 60) == 1)
+			else if (mouse_press(450, 25, 530, 60) == 1)
 			{
 				*func = 8;
 				return;
@@ -188,6 +186,19 @@ void userpage_main(int *func, USER *u)
 		}
 
 		//跳转至动态查询界面
+		if (MouseX > 540 && MouseX < 620 && MouseY > 25 && MouseY < 60)
+		{
+			if (mouse_press(540, 25, 620, 60) == 2)
+			{
+				MouseS = 1;
+				continue;
+			}
+			else if (mouse_press(540, 25, 620, 60) == 1)
+			{
+				*func = 15;
+				return;
+			}
+		}
 
 		//跳转至修改密码界面
 		if (MouseX > 520 && MouseX < 640 && MouseY > 70 && MouseY < 100)
@@ -209,6 +220,24 @@ void userpage_main(int *func, USER *u)
 			}
 		}
 		//跳转历史机票查询界面
+		if (MouseX > 520 && MouseX < 640 && MouseY > 100 && MouseY < 130)
+		{
+			if (mouse_press(520, 100, 640, 160) == 2)
+			{
+				MouseS = 1;
+				if (num == 0)
+				{
+					lightup_userpage(510, 112, 600, 124, 2);
+					num = 2;
+				}
+				continue;
+			}
+			else if (mouse_press(520, 100, 640, 130) == 1)
+			{
+				*func = 25;
+				return;
+			}
+		}
 
 		//跳转酒店订购界面
 		if (MouseX > 520 && MouseX < 640 && MouseY > 130 && MouseY < 160)
@@ -354,6 +383,48 @@ void get_userinfo(USER *u)
 }
 
 /***********************************
+FUNCTION: get_tkinfo
+DESCRIPTION: 获取待出行机票信息
+INPUT: 无
+RETURN: 无
+***********************************/
+void get_tkinfo(USER *u)
+{
+	FILE *fp;
+	Hold htemp;
+	int i, len;
+	char file_hold[30] = "\0";
+	strcpy(file_hold, "database\\");
+	strcat(file_hold, u->name);
+	strcat(file_hold, "\\hold.dat");
+	if ((fp = fopen(file_hold, "rb+")) == NULL)
+	{
+		printf("cannot open file HOLD\n");
+		delay(3000);
+		exit(1);
+	}
+	fseek(fp, 0, SEEK_END);
+	len = ftell(fp) / sizeof(Hold); //酒店信息的个数
+	fseek(fp, (len - 1) * sizeof(Hold), SEEK_SET);
+	fread(&htemp, sizeof(Hold), 1, fp);
+	puthz(110, 350, htemp.company, 16, 18, 8);
+	puthz(190, 350, htemp.city1, 16, 18, 8);
+	puthz(270, 350, htemp.city2, 16, 18, 8);
+	puthz(340, 350, htemp.sort, 16, 18, 8);
+	setcolor(DARKGRAY);
+	outtextxy(15, 350, htemp.number);
+	outtextxy(490, 350, htemp.price);
+	outtextxy(560, 350, htemp.distance);
+	outtextxy(430, 350, htemp.ticket_num);
+	if (fclose(fp) != 0)
+	{
+		printf("%s close failed\n", file_hold);
+		delay(3000);
+		exit(1);
+	}
+}
+
+/***********************************
 FUNCTION: input_healthcode
 DESCRIPTION: 将健康码状态写入数据库
 INPUT:*u
@@ -393,6 +464,7 @@ void input_healthcode(USER *u, char *health_code)
 		exit(1);
 	}
 }
+
 /***********************************
 FUNCTION: lightup_userpage
 DESCRIPTION: 个人中心按钮点亮
@@ -549,6 +621,19 @@ void userpage_draw(void)
 	puthz(520, 170, "酒店查询", 16, 18, 5);
 	puthz(520, 200, "我的卡包", 16, 18, 5);
 	puthz(520, 230, "退出登录", 16, 18, 5);
+	puthz(10, 320, "航班编号", 16, 18, 9);
+	puthz(90, 320, "航空公司", 16, 18, 9);
+	puthz(170, 320, "计划起飞", 16, 18, 9);
+	puthz(250, 320, "计划到达", 16, 18, 9);
+	puthz(330, 320, "机票类型", 16, 18, 9);
+	puthz(410, 320, "机票数目", 16, 18, 9);
+	puthz(490, 320, "总票价", 16, 18, 9);
+	puthz(560, 320, "里程数", 16, 18, 9);
+	puthz(490, 450, "祝您旅途愉快！", 16, 18, 6);
+	setcolor(DARKGRAY);
+	rectangle(10, 395, 270, 470);
+	rectangle(15, 390, 275, 465);
+	puthz(35, 420, "疫情期间，请注意防护！", 16, 18, 5);
 }
 
 //鼠标形状Shape 1为手势，2为光标，3为十字

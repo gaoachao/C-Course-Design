@@ -118,7 +118,9 @@ void scanpay_main(int *func, USER *u, Live *L)
         scanpay_scan();
         delay(2000);
         puthz(345, 330, "¸¶¿î³É¹¦", 16, 18, 8);
-        continue;
+        delay(2000);
+        *func = 11;
+        return;
       }
     }
 

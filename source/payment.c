@@ -86,6 +86,7 @@ void payment_main(int *func, USER *u, Live *L)
         return;
       }
     }
+
     //银行卡支付
     if (MouseX > 75 && MouseX < 170 && MouseY > 80 && MouseY < 110)
     {
@@ -100,6 +101,7 @@ void payment_main(int *func, USER *u, Live *L)
         return;
       }
     }
+
     //输入银行卡密码
     if (MouseX > 200 && MouseX < 380 && MouseY > 265 && MouseY < 295)
     {
@@ -160,7 +162,7 @@ void payment_main(int *func, USER *u, Live *L)
       }
       if (mouse_press(190, 340, 280, 375) == 1)
       {
-        inputlive_database(u, L);
+        
         delay(800);
         if (flag != 0)
         {
@@ -173,12 +175,16 @@ void payment_main(int *func, USER *u, Live *L)
         {
           if (flag_finish == 0)
           {
+            inputlive_database(u, L);
             setfillstyle(SOLID_FILL, WHITE);
             bar(320, 340, 640, 380);
             bar(390, 260, 640, 300);
             puthz(430, 270, "密码正确", 16, 18, 6);
             puthz(430, 350, "支付完成", 16, 18, 6);
             flag_finish = 1;
+            delay(2000);
+            *func = 11;
+            return;
           }
           else if (flag_finish == 1)
           {
@@ -188,7 +194,6 @@ void payment_main(int *func, USER *u, Live *L)
             puthz(430, 350, "请勿重复付款", 16, 18, 6);
           }
         }
-
         continue;
       }
     }
