@@ -6,5 +6,6 @@ void hesuan_main(int *func, USER *u);
 void hesuan_draw(void);
 void recover_hesuan(int x1, int y1, int x2, int y2, int flag);
 void lightup_hesuan(int x1, int y1, int x2, int y2, int flag);
+void input_hesuan(USER *u, char *hesuan);
 
 #endif

@@ -49,6 +49,8 @@ void buypage_main(int *func, Ticket *t)
 
 	memset(t, '\0', sizeof(Ticket));
 
+	memset(t_list,'\0',sizeof(Ticket)*List_len);
+
 	buypage_draw();
 	exit_buttom();
 	get_time(ttemp);

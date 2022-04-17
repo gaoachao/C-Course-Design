@@ -2,7 +2,7 @@
 #define _QUEUE_H_
 #include"database.h"
 #define MaxSize 8//ÿһҳ�����ʾ��Ʊ����?
-#define List_len 26//��Ʊ��Ϣ�б�����
+#define List_len 26
 #define List_len_dynamic 30
 
 typedef struct _TicketNode//��Ʊ����

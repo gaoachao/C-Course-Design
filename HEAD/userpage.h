@@ -10,5 +10,6 @@ void input_healthcode(USER* u,char* health_code);
 void lightup_userpage(int x1, int y1, int x2, int y2, int flag);
 void recover_usepage(int x1, int y1, int x2, int y2, int flag);
 void get_tkinfo(USER *u);
+void distance_change(USER *u);
 
 #endif

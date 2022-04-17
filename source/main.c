@@ -55,7 +55,8 @@ int main()
 		{
 		case 0: //登录
 		{
-			//checkin_main(&func, &u, &L);
+			//hesuan_main(&func, &u);
+			// checkin_main(&func, &u, &L);
 			login_main(&func, &u);
 			break;
 		}
@@ -186,7 +187,12 @@ int main()
 		}
 		case 25: //办理入住的日期选择
 		{
-			history_main(&func,&u);
+			history_main(&func, &u);
+			break;
+		}
+		case 26: //核酸结果填报
+		{
+			hesuan_main(&func, &u);
 			break;
 		}
 		default:

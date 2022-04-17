@@ -41,6 +41,7 @@ void userpage_main(int *func, USER *u)
 	//获取基本信息
 	get_userinfo(u);
 	get_tkinfo(u);
+	distance_change(u);
 
 	//刚进入页面进行一次健康状态的判断
 	if (strcmp(u->health_code, "1") == 0)
@@ -72,7 +73,7 @@ void userpage_main(int *func, USER *u)
 	}
 	else if (strcmp(u->hesuan, "2") == 0)
 	{
-		puthz(180, 190, "阳性", 16, 18, 8);
+		puthz(180, 190, "阳性", 16, 18, 4);
 	}
 	else
 	{
@@ -379,7 +380,6 @@ void get_userinfo(USER *u)
 	setcolor(DARKGRAY);
 	outtextxy(145, 95, u->name);
 	outtextxy(145, 125, u->id);
-	outtextxy(145, 215, u->mileage);
 }
 
 /***********************************
@@ -404,7 +404,7 @@ void get_tkinfo(USER *u)
 		exit(1);
 	}
 	fseek(fp, 0, SEEK_END);
-	len = ftell(fp) / sizeof(Hold); //酒店信息的个数
+	len = ftell(fp) / sizeof(Hold); //机票信息的个数
 	fseek(fp, (len - 1) * sizeof(Hold), SEEK_SET);
 	fread(&htemp, sizeof(Hold), 1, fp);
 	puthz(110, 350, htemp.company, 16, 18, 8);
@@ -453,7 +453,7 @@ void input_healthcode(USER *u, char *health_code)
 		{
 			strcpy(u->health_code, health_code);
 			fseek(fp, i * sizeof(USER), SEEK_SET);
-			fwrite(u, sizeof(USER), 1, fp);
+			fwrite(u, sizeof(USER), 1, fp);   //fwrite函数在写入的时候是覆盖光标当前位置后“偏移量”个单位
 			break;
 		}
 	}
@@ -570,6 +570,60 @@ void recover_usepage(int x1, int y1, int x2, int y2, int flag)
 		closegraph();
 		exit(1);
 	}
+	}
+}
+
+/***********************************
+FUNCTION: distance_remain
+DESCRIPTION: 输入用户的总里程数
+INPUT:
+RETURN: 无
+***********************************/
+void distance_change(USER *u)
+{
+	FILE *fp;
+	Hold htemp;
+	int i, j, len;
+	char distance[10];  //来接收数据库里的历程字符串（含km）
+	char distan[10];   //遍历去掉（km）
+	int  distance_temp = 0;   //转换为整型里程数
+	int  distance_total = 0; //总里程数
+	char distance_all[5];  //总里程数（字符串）
+	char file_hold[30];
+	strcpy(file_hold, "database\\");
+	strcat(file_hold, u->name);
+	strcat(file_hold, "\\hold.dat");
+	if ((fp = fopen(file_hold, "rb+")) == NULL)
+	{
+		printf("cannot open file HOLD\n");
+		delay(3000);
+		exit(1);
+	}
+	fseek(fp, 0, SEEK_END);
+	len = ftell(fp) / sizeof(Hold); //机票信息的个数
+
+	for (i = 0; i < len; i++)
+	{
+		memset(&htemp,'\0',sizeof(Hold));
+		fseek(fp, i * sizeof(Hold), SEEK_SET);
+		fread(&htemp, sizeof(Hold), 1, fp);
+		strcpy(distance,htemp.distance);
+		for (j = 0; distance[j] != 'k'; j++)
+		{
+			distan[j] = distance[j];
+		}
+      distance_temp = atoi(distan);
+			distance_total += distance_temp;
+		
+	}
+  itoa(distance_total, distance_all, 10);
+	setcolor(DARKGRAY);
+  outtextxy(145, 215, distance_all);
+	if (fclose(fp) != 0)
+	{
+		printf("%s close failed\n", file_hold);
+		delay(3000);
+		exit(1);
 	}
 }
 

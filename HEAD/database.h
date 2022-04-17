@@ -9,7 +9,7 @@ typedef struct userinfo
 	char bank[20];		  // 19位银行账户
 	char bankpassword[7]; // 6位银行账户密码
 	char health_code[2];  //健康码状态  1代表绿码，2代表黄码，3代表红码;
-	char hesuan[2];
+	char hesuan[2];      //核酸状态填报   0代表未填报  1代表阴性  2代表阳性
 	char mileage[5];
 } USER;					  //用户信息
 

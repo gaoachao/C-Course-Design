@@ -128,6 +128,7 @@ void purchace_main(int *func, USER u, Ticket t)
     strcpy(hold.city1, t.city1);
     strcpy(hold.city2, t.city2);
     strcpy(hold.distance, t.distance);
+    strcpy(hold.date,t.date);
     price1 = atoi(t.economy_price);
     itoa(tnum, ticket_num, 10);
     //ÎÄ¼þ¼Ð²Ù×÷

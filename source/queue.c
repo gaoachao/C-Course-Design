@@ -255,7 +255,6 @@ RETURN: нч
 void queue_up(int *prepage, int page_num)
 {
 	(*prepage) = ((*prepage) - 1 + page_num) % page_num;
-	//	printf("prepage=%d\n",*prepage);
 }
 
 /*void clearqueue(TNode *node)

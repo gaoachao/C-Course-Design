@@ -176,7 +176,8 @@ void prevent_main(int *func, USER *u)
       }
       else if (mouse_press(230, 270, 270, 300) == 1)
       {
-        continue;
+        *func = 26;
+        return;
       }
     }
 
