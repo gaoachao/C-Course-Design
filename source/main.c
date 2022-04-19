@@ -28,6 +28,12 @@
 #include "upload.h"
 #include "scanpay.h"
 #include "payment.h"
+#include "upload.h"
+#include "up.h"
+#include "htinfo.h"
+#include "history.h"
+#include "hesuan.h"
+#include "area.h"
 
 int main()
 {
@@ -193,6 +199,16 @@ int main()
 		case 26: //核酸结果填报
 		{
 			hesuan_main(&func, &u);
+			break;
+		}
+		case 27: //旅客过往地区查询
+		{
+			area_main(&func, &u);
+			break;
+		}
+		case 28: //管理员模式修改风险等级
+		{
+			manage_main(&func);
 			break;
 		}
 		default:

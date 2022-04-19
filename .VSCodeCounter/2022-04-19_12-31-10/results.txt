@@ -1,0 +1,98 @@
+Date : 2022-04-19 12:31:10
+Directory : c:\Users\gaochenchao\Desktop\c_language\DISK_C\code
+Total : 69 files,  15426 codes, 2451 comments, 1318 blanks, all 19195 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| C        |         37 |     14,801 |      2,382 |      1,172 |     18,355 |
+| C++      |         31 |        623 |         69 |        145 |        837 |
+| Markdown |          1 |          2 |          0 |          1 |          3 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++-----------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                  | files      | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                     |         69 |     15,426 |      2,451 |      1,318 |     19,195 |
+| HEAD                                                                  |         33 |        435 |          5 |        135 |        575 |
+| HZK                                                                   |          2 |        194 |          5 |         41 |        240 |
+| source                                                                |         33 |     14,795 |      2,441 |      1,141 |     18,377 |
++-----------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-----------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                                              | language | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\HEAD\area.h       | C        |          8 |          0 |          2 |         10 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\HEAD\booked.h     | C++      |          8 |          0 |          2 |         10 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\HEAD\buypage.h    | C++      |         18 |          1 |          3 |         22 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\HEAD\cardch.h     | C++      |          9 |          0 |          3 |         12 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\HEAD\change.h     | C++      |         13 |          0 |          2 |         15 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\HEAD\change2.h    | C++      |          9 |          0 |          3 |         12 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\HEAD\checkin.h    | C++      |         10 |          0 |          2 |         12 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\HEAD\danger.h     | C++      |          4 |          0 |          4 |          8 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\HEAD\database.h   | C++      |         74 |          1 |          8 |         83 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\HEAD\dynamic.h    | C++      |         14 |          0 |         10 |         24 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\HEAD\flgstate.h   | C++      |         19 |          0 |         16 |         35 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\HEAD\hesuan.h     | C        |          9 |          0 |          2 |         11 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\HEAD\history.h    | C        |         21 |          0 |          5 |         26 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\HEAD\htinfo.h     | C++      |          9 |          0 |          2 |         11 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\HEAD\hz.h         | C++      |          4 |          0 |          3 |          7 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\HEAD\login.h      | C++      |         16 |          0 |          2 |         18 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\HEAD\manage.h     | C++      |          7 |          0 |          2 |          9 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\HEAD\menu.h       | C        |          5 |          1 |          6 |         12 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\HEAD\mouse.h      | C++      |         16 |          1 |          2 |         19 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\HEAD\mycard.h     | C++      |          9 |          0 |          5 |         14 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\HEAD\pay.h        | C++      |         10 |          0 |          8 |         18 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\HEAD\payment.h    | C++      |         11 |          0 |          3 |         14 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\HEAD\prevent.h    | C++      |         21 |          1 |          4 |         26 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\HEAD\purchase.h   | C++      |         12 |          0 |          8 |         20 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\HEAD\queue.h      | C++      |         21 |          0 |         10 |         31 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\HEAD\register.h   | C++      |         18 |          0 |          2 |         20 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\HEAD\reserve.h    | C++      |         15 |          0 |          2 |         17 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\HEAD\scanpay.h    | C++      |          9 |          0 |          2 |         11 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\HEAD\tictdisp.h   | C++      |          4 |          0 |          2 |          6 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\HEAD\up.h         | C++      |          9 |          0 |          2 |         11 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\HEAD\upload.h     | C++      |          7 |          0 |          3 |         10 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\HEAD\userpage.h   | C++      |         12 |          0 |          3 |         15 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\HEAD\welcome.h    | C++      |          4 |          0 |          2 |          6 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\HZK\hz.c          | C        |        190 |          5 |         38 |        233 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\HZK\hz.h          | C++      |          4 |          0 |          3 |          7 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\README.md         | Markdown |          2 |          0 |          1 |          3 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\source\MOUSE.C    | C++      |        227 |         65 |         22 |        314 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\source\anime.c    | C        |         35 |        207 |          8 |        250 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\source\area.c     | C        |        160 |         32 |          7 |        199 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\source\booked.c   | C        |        287 |         48 |         20 |        355 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\source\buypage.c  | C        |      1,295 |        125 |        103 |      1,523 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\source\cardch.c   | C        |        322 |         47 |         16 |        385 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\source\change.c   | C        |        549 |         96 |         87 |        732 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\source\change2.c  | C        |        349 |         68 |         24 |        441 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\source\checkin.c  | C        |      1,179 |         74 |         13 |      1,266 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\source\danger.c   | C        |        107 |         20 |          6 |        133 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\source\dyanmic.c  | C        |      1,647 |        145 |        141 |      1,933 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\source\flgstate.c | C        |      1,505 |        203 |        149 |      1,857 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\source\hesuan.c   | C        |        263 |         52 |         10 |        325 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\source\history.c  | C        |        472 |         77 |         19 |        568 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\source\htinfo.c   | C        |        221 |         59 |         11 |        291 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\source\hz.c       | C        |        190 |          5 |         38 |        233 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\source\login.c    | C        |        733 |        122 |         76 |        931 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\source\main.c     | C        |        205 |          3 |         12 |        220 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\source\manage.c   | C        |        117 |         26 |          5 |        148 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\source\mycard.c   | C        |        119 |         34 |         12 |        165 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\source\pay.c      | C        |        413 |         47 |         41 |        501 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\source\payment.c  | C        |        374 |         58 |         18 |        450 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\source\prevent.c  | C        |        537 |        109 |         32 |        678 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\source\purchase.c | C        |        584 |         76 |         53 |        713 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\source\queue.c    | C        |        192 |        183 |         23 |        398 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\source\register.c | C        |        601 |        120 |         64 |        785 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\source\reserve.c  | C        |        638 |        106 |         32 |        776 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\source\scanpay.c  | C        |        270 |         43 |         21 |        334 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\source\time.c     | C        |         44 |         12 |         11 |         67 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\source\up.c       | C        |        414 |         48 |         18 |        480 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\source\upload.c   | C        |        123 |         37 |          8 |        168 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\source\userpage.c | C        |        590 |         86 |         28 |        704 |
+| c:\Users\gaochenchao\Desktop\c_language\DISK_C\code\source\welcome.c  | C        |         33 |          8 |         13 |         54 |
+| Total                                                                 |          |     15,426 |      2,451 |      1,318 |     19,195 |
++-----------------------------------------------------------------------+----------+------------+------------+------------+------------+

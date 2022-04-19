@@ -20,5 +20,7 @@ void getinfo_List(StaticLinkList *space);
 void InitList(StaticLinkList *space);
 void printtips(StaticLinkList *space);
 void tips_cover(void);
+void List_next(int *flag, StaticLinkList *space);
+void get_h_min_second(int *h, int *min, int *sec);
 
 #endif

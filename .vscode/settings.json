@@ -5,6 +5,8 @@
     "menu.h": "c",
     "stdio.h": "c",
     "string.h": "c",
-    "history.h": "c"
+    "history.h": "c",
+    "hesuan.h": "c",
+    "area.h": "c"
   }
 }

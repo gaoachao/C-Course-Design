@@ -18,6 +18,7 @@ DESCRIPTION: ÓÃ»§¸öÈËÖÐÐÄ£¬°üÀ¨ÐÞ¸ÄÃÜÂë¡¢´ý³öÐÐ»úÆ±²éÑ¯¡¢¸öÈËÐÅÏ¢£¨°üÀ¨½¡¿µ×´¿ö£
 #include "menu.h"
 #include "userpage.h"
 #include "prevent.h"
+#include "time.h"
 #define city_len 12
 #define tips_len 10
 
@@ -30,10 +31,21 @@ RETURN: ÎÞ
 void prevent_main(int *func, USER *u)
 {
   StaticLinkList list[tips_len];
+  City c[city_len];
+  int key;
   int i = 0;
   int num = 0;
   int flag = 0;
-  City c[city_len];
+  int state_city = 0; //ÓÃÀ´¼ÇÂ¼ÖÐ¸ß·çÏÕµØÇøÕ¹¿ª×´¿ö
+  int state = 0;      //À´¼ÇÂ¼±êÓï·­Ò³×´Ì¬
+  int hour1, min1;
+  int second1, second_all_1;
+  int second_all_2 = 0;
+  char ttemp[40] = "\0";
+
+  //³õÊ¼½øÈëº¯ÊýµÄÊ±¼ä
+  get_h_min_second(&hour1, &min1, &second1);
+  second_all_1 = (60 * hour1 + min1) * 60 + second1;
   InitList(list);
   getinfo_List(list);
   //³öÏÖÒßÇé·À¿Ø½çÃæ
@@ -42,7 +54,9 @@ void prevent_main(int *func, USER *u)
   exit_buttom();
   //´òÓ¡·ÀÒß±êÓï
   printtips(list);
-  
+  //»ñµÃÊ±¼ä ÓëdisplayÒ»ÆðµÄº¯Êý
+  get_time(ttemp);
+
   //¸Õ½øÈëÒ³Ãæ½øÐÐÒ»´Î½¡¿µ×´Ì¬µÄÅÐ¶Ï
   if (strcmp(u->health_code, "1") == 0)
   {
@@ -67,6 +81,29 @@ void prevent_main(int *func, USER *u)
   while (1)
   {
     newmouse(&MouseX, &MouseY, &press);
+    //³öÏÖÊ±¼ä
+    display_time(65, 10, ttemp);
+    //ÀûÓÃÊ±¼ä¶Ô±êÓï½øÐÐ¹ö¶¯²¥·Å
+    get_h_min_second(&hour1, &min1, &second1);
+    second_all_2 = (60 * hour1 + min1) * 60 + second1;
+    if (second_all_2 == second_all_1 + 15)
+    {
+      tips_cover();
+      List_next(&flag, list);
+      puthz(100, 110, list[flag].data, 16, 18, 6);
+      second_all_1 = second_all_2;
+    }
+    //°´¼ü¿ØÖÆ±êÓï·­Ò³
+    if (kbhit())
+    {
+      key = bioskey(0);
+      if (key == Key_Down)
+      {
+        tips_cover();
+        List_next(&flag, list);
+        puthz(100, 110, list[flag].data, 16, 18, 6);
+      }
+    }
     //Ìø×ªÖÁ»úÆ±ÐÅÏ¢½çÃæ
     if (MouseX > 270 && MouseX < 350 && MouseY > 10 && MouseY < 60)
     {
@@ -132,12 +169,32 @@ void prevent_main(int *func, USER *u)
           lightup_prevent(230, 242, 280, 254, 4);
           num = 4;
         }
+
         continue;
       }
       else if (mouse_press(230, 230, 270, 260) == 1)
       {
-        city_read(c);
-        get_cityinfo(c);
+        if (state_city == 0) //±íÊ¾Î´Õ¹¿ª
+        {
+          city_read(c);
+          get_cityinfo(c);
+          delay(100);
+        }
+        if (state_city == 1) //±íÊ¾ÒÑÕ¹¿ª
+        {
+          setfillstyle(SOLID_FILL, WHITE);
+          bar(465, 147, 640, 480);
+          delay(100);
+        }
+        if (state_city == 0)
+        {
+          state_city = 1;
+        }
+        else if (state_city == 1)
+        {
+          state_city = 0;
+        }
+
         continue;
       }
     }
@@ -157,7 +214,8 @@ void prevent_main(int *func, USER *u)
       }
       else if (mouse_press(230, 190, 270, 220) == 1)
       {
-        continue;
+        *func = 27;
+        return;
       }
     }
 
@@ -192,17 +250,25 @@ void prevent_main(int *func, USER *u)
           lightup_prevent(530, 110, 600, 140, 1);
           num = 1;
         }
-        if (flag != list[flag].cur)
+        if (state != 0)
         {
-          flag = list[flag].cur;
+          if (state == 1)
+          {
+            state = 0;
+          }
         }
         continue;
       }
       else if (mouse_press(530, 115, 600, 145) == 1)
       {
-        tips_cover();
-
-        puthz(100, 110, list[flag].data, 16, 18, 6);
+        if (state == 0)
+        {
+          tips_cover();
+          List_next(&flag, list);
+          puthz(100, 110, list[flag].data, 16, 18, 6);
+          state = 1;
+        }
+        delay(100);
         continue;
       }
     }
@@ -222,7 +288,8 @@ void prevent_main(int *func, USER *u)
       }
       else if (mouse_press(320, 230, 430, 265) == 1)
       {
-        continue;
+        *func = 28;
+        return;
       }
     }
 
@@ -265,6 +332,7 @@ DESCRIPTION: ÖÐ¸ß·çÏÕµØÇø¶ÁÈë
 INPUT: ÎÞ
 RETURN: ÎÞ
 ***********************************/
+
 void city_read(City *c)
 {
   FILE *fp;
@@ -294,6 +362,36 @@ void city_read(City *c)
     exit(1);
   }
 }
+/*
+void city_read(City *c)
+{
+  FILE *fp;
+  City ctem;
+  int i = 0;
+  memset(c, '\0', city_len * sizeof(City));
+  if ((fp = fopen("database\\city.dat", "rb+")) == NULL)
+  {
+    printf("cannot open file city\n");
+    delay(3000);
+    exit(1);
+  }
+  fseek(fp, 0, SEEK_SET);
+  for (i = 0; i < city_len; i++) 
+  {
+    memset(&ctem, '\0', sizeof(City));
+    fseek(fp, i * sizeof(City), SEEK_SET);
+    fread(&ctem, sizeof(City), 1, fp);
+    strcpy(c[i].city_name, ctem.city_name);
+    strcpy(c[i].level, ctem.level);
+  }
+  if (fclose(fp) != 0)
+  {
+    printf("cannot close city");
+    delay(2000);
+    exit(1);
+  }
+}  
+*/
 
 /*****************************
 FUNCTION: get_cityinfo
@@ -336,7 +434,7 @@ void lightup_prevent(int x1, int y1, int x2, int y2, int flag)
   {
     setcolor(RED);
     rectangle(x1 - 1, y1 - 1, x2 + 1, y2 + 1);
-    puthz(330, 240, "¹ÜÀíÔ±Ä£Ê½", 16, 18, 1);
+    puthz(330, 240, "¹ÜÀíÔ±Ä£Ê½", 16, 18, 4);
     break;
   }
   case 3:
@@ -452,6 +550,10 @@ void prevent_draw(void)
   rectangle(530, 110, 600, 140);
   puthz(330, 240, "¹ÜÀíÔ±Ä£Ê½", 16, 18, 1);
   rectangle(320, 230, 430, 265);
+  setcolor(DARKGRAY);
+  rectangle(60, 375, 330, 470);
+  rectangle(65, 370, 335, 465);
+  puthz(85, 410, "ÒßÇéÆÚ¼ä£¬Çë×¢Òâ·À»¤£¡", 16, 18, 6);
 }
 
 /* 1 À¶É«
@@ -481,6 +583,18 @@ void InitList(StaticLinkList *space)
     i++;
   }
   space[tips_len - 1].cur = 0;
+}
+
+/***********************************
+FUNCTION: List_next
+DESCRIPTION: ¸ü¸ÄÁ´±íµÄÓÎ±ê
+INPUT: StaticLinkList space   flag
+RETURN: ÎÞ
+***********************************/
+void List_next(int *flag, StaticLinkList *space)
+{
+  int temp = *flag;
+  *flag = space[temp].cur;
 }
 
 /***********************************
@@ -543,4 +657,52 @@ void tips_cover(void)
 {
   setfillstyle(SOLID_FILL, WHITE);
   bar(70, 90, 350, 140);
+}
+
+/***********************************
+FUNCTION: get_h_min_second
+DESCRIPTION: »ñÈ¡ÊµÊ±Ð¡Ê±ºÍ·ÖÖÓ
+INPUT: *h  *min  *sec
+RETURN: ÎÞ
+***********************************/
+void get_h_min_second(int *h, int *min, int *sec)
+{
+  time_t lt;
+  struct tm *ptr;
+  char hour[3], minute[3], second[3];
+  char first; //,second;
+
+  memset(hour, '\0', sizeof(hour));
+  memset(minute, '\0', sizeof(minute));
+  memset(second, '\0', sizeof(second));
+
+  lt = time(NULL);
+  ptr = localtime(&lt); //»ñÈ¡±¾µØÊ±¼ä
+
+  strftime(hour, 3, "%H", ptr);
+  strftime(minute, 3, "%M", ptr);
+  strftime(second, 3, "%S", ptr);
+
+  if (hour[0] == '0')
+  {
+    first = hour[1];
+    hour[0] = first;
+    hour[1] = '\0';
+  }
+  if (minute[0] == '0')
+  {
+    first = minute[1];
+    minute[0] = first;
+    minute[1] = '\0';
+  }
+  if (second[0] == '0')
+  {
+    first = second[1];
+    second[0] = first;
+    second[1] = '\0';
+  }
+
+  *h = atoi(hour);
+  *min = (atoi(minute));
+  *sec = (atoi(second));
 }
